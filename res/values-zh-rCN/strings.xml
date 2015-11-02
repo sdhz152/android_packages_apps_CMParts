@@ -536,4 +536,18 @@
   <string name="touchscreen_gesture_action_play_pause_music">播放/暂停音乐播放</string>
   <string name="touchscreen_gesture_action_previous_track">转到上一曲目</string>
   <string name="touchscreen_gesture_action_next_track">转到下一曲目</string>
+
+    <!-- Status bar - Network Traffic -->
+    <string name="network_traffic_settings_title">网络流量监控</string>
+    <string name="network_traffic_settings_summary">显示状态栏中当前的网络流量</string>
+
+    <string name="network_traffic_mode_title">显示模式</string>
+    <string name="network_traffic_refresh_interval_title">更新间隔</string>
+    <string name="network_traffic_mode_disable">禁用</string>
+    <string name="network_traffic_mode_up">显示上传速度</string>
+    <string name="network_traffic_mode_down">显示下载速度</string>
+    <string name="network_traffic_mode_all">显示上传和下载速度</string>
+    <string name="network_traffic_autohide">自动隐藏</string>
+    <string name="network_traffic_autohide_summary">没有活动时隐藏交通监控器</string>
+    <string name="network_traffic_autohide_threshold_title">不活动阈值</string>
 </resources>
