@@ -49,4 +49,7 @@
      <string name="hide_from_recents_add_app">Add App</string>
      <string name="hide_apps_from_recents_summary">Pick which apps to exclude from the recents panel</string>
      <string name="recents_settings_title">Recent application</string>
+     <!-- Show lte/4g switch -->
+     <string name="show_lte_fourgee_title">Show 4G instead of LTE</string>
+     <string name="show_lte_fourgee_summary">Replaces LTE statusbar indicator with 4G</string>
 </resources>
