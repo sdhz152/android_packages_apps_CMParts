@@ -203,6 +203,8 @@
         <service android:name=".cmstats.StatsUploadJobService"
                  android:permission="android.permission.BIND_JOB_SERVICE" />
 
+        <activity android:name="org.cyanogenmod.cmparts.statusbar.HAFRAppListActivity" />
+
         <service android:name=".cmstats.ReportingService"
                  android:label="ReportingService"
                  android:enabled="true"

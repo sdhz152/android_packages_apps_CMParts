@@ -45,4 +45,9 @@
     <string name="carrier_size_style_normal">正常</string>
     <string name="carrier_size_style_small">小</string>
     <string name="carrier_size_style_big">大</string>
+    <!-- Hide Apps from Recents -->
+    <string name="hide_apps_from_recents_title">隐藏应用程序</string>
+    <string name="hide_from_recents_add_app">添加应用程序</string>
+    <string name="hide_apps_from_recents_summary">选择哪些应用程序排除从历史面板</string>
+    <string name="recents_settings_title">最近应用</string>
 </resources>
