@@ -79,4 +79,10 @@
     <string name="status_bar_date_string_edittext_summary">请输入字符串</string>
     <string name="menu_save">保存</string>
     <string name="menu_cancel">取消</string>
+    <!-- Color Picker -->
+    <string name="dialog_color_picker">颜色选择器</string>
+    <string name="press_color_to_apply">按下面的颜色应用</string>
+    <string name="hex">十六进制:</string>
+    <string name="set">设置</string>
+    <string name="color_default">默认</string>
 </resources>
