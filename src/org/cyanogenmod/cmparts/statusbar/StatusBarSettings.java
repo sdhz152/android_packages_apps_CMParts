@@ -17,6 +17,11 @@
 package org.cyanogenmod.cmparts.statusbar;
 
 import android.os.Bundle;
+import android.provider.Settings;
+import android.content.ContentResolver;
+import android.support.v14.preference.SwitchPreference;
+import android.support.v7.preference.ListPreference;
+import android.support.v7.preference.PreferenceScreen;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.Preference.OnPreferenceChangeListener;
 import android.text.format.DateFormat;
@@ -35,6 +40,7 @@ public class StatusBarSettings extends SettingsPreferenceFragment
     private static final String STATUS_BAR_BATTERY_STYLE = "status_bar_battery_style";
     private static final String STATUS_BAR_SHOW_BATTERY_PERCENT = "status_bar_show_battery_percent";
     private static final String STATUS_BAR_QUICK_QS_PULLDOWN = "qs_quick_pulldown";
+    private static final String STATUS_BAR_NETWORK_TRAFFIC_STYLE = "status_bar_network_traffic_style";
 
     private static final int STATUS_BAR_BATTERY_STYLE_HIDDEN = 4;
     private static final int STATUS_BAR_BATTERY_STYLE_TEXT = 6;
@@ -45,10 +51,14 @@ public class StatusBarSettings extends SettingsPreferenceFragment
     private CMSystemSettingListPreference mStatusBarBattery;
     private CMSystemSettingListPreference mStatusBarBatteryShowPercent;
 
+    private ListPreference mStatusBarNetworkTraffic;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.status_bar_settings);
+
+        ContentResolver resolver = getActivity().getContentResolver();
 
         mStatusBarClock = (CMSystemSettingListPreference) findPreference(STATUS_BAR_CLOCK_STYLE);
         mStatusBarBatteryShowPercent =
@@ -69,6 +79,14 @@ public class StatusBarSettings extends SettingsPreferenceFragment
                 (CMSystemSettingListPreference) findPreference(STATUS_BAR_QUICK_QS_PULLDOWN);
         mQuickPulldown.setOnPreferenceChangeListener(this);
         updateQuickPulldownSummary(mQuickPulldown.getIntValue(0));
+
+        mStatusBarNetworkTraffic = (ListPreference) findPreference(STATUS_BAR_NETWORK_TRAFFIC_STYLE);
+        int networkTrafficStyle = Settings.System.getInt(resolver,
+                Settings.System.STATUS_BAR_NETWORK_TRAFFIC_STYLE, 3);
+        mStatusBarNetworkTraffic.setValue(String.valueOf(networkTrafficStyle));
+        mStatusBarNetworkTraffic
+                .setSummary(mStatusBarNetworkTraffic.getEntry());
+        mStatusBarNetworkTraffic.setOnPreferenceChangeListener(this);
     }
 
     @Override
@@ -89,7 +107,16 @@ public class StatusBarSettings extends SettingsPreferenceFragment
             updateQuickPulldownSummary(value);
         } else if (preference == mStatusBarBattery) {
             enableStatusBarBatteryDependents(value);
-        }
+        } else if (preference == mStatusBarNetworkTraffic) {
+            int networkTrafficStyle = Integer.valueOf((String) newValue);
+            int index = mStatusBarNetworkTraffic
+                    .findIndexOfValue((String) newValue);
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.STATUS_BAR_NETWORK_TRAFFIC_STYLE,
+                    networkTrafficStyle);
+            mStatusBarNetworkTraffic.setSummary(mStatusBarNetworkTraffic
+                    .getEntries()[index]);
+          }
         return true;
     }
 
