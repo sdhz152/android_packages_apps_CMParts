@@ -25,4 +25,6 @@
     <string name="status_bar_network_traffic_style_up">Outgoing</string>
     <string name="status_bar_network_traffic_style_down">Incoming</string>
     <string name="status_bar_network_traffic_style_all">Outgoing and incoming</string>
+    <string name="show_stk_dialog_title">Hide STK dialog box</string>
+    <string name="show_stk_dialog_summary">The hidden boot STK dialog</string>
 </resources>
