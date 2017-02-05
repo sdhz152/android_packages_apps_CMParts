@@ -27,4 +27,7 @@
     <string name="status_bar_network_traffic_style_all">Outgoing and incoming</string>
     <string name="show_stk_dialog_title">Hide STK dialog box</string>
     <string name="show_stk_dialog_summary">The hidden boot STK dialog</string>
+    <!-- SU indicator -->
+    <string name="show_su_indicator_title">Enable SU icon</string>
+    <string name="show_su_indicator_summary">Option to enable or disable native superuser icon</string>
 </resources>

@@ -79,6 +79,12 @@
         android:entryValues="@array/status_bar_battery_percentage_values"
         android:defaultValue="0" />
 
+    <org.cyanogenmod.cmparts.widget.SystemSettingSwitchPreference
+        android:key="show_su_indicator"
+        android:title="@string/show_su_indicator_title"
+        android:summary="@string/show_su_indicator_summary"
+        android:defaultValue="true" />
+
     <cyanogenmod.preference.CMSystemSettingListPreference
         android:key="qs_quick_pulldown"
         android:title="@string/status_bar_quick_qs_pulldown_title"
