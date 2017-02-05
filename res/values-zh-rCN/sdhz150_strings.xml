@@ -30,4 +30,8 @@
     <!-- SU indicator -->
     <string name="show_su_indicator_title">启用SU图标</string>
     <string name="show_su_indicator_summary">选项可启用或禁用本地超级用户图标</string>
+   <string name="lockscreen_battery_info_title">锁屏电池信息</string>
+   <string name="lockscreen_battery_info_summary">显示谈判充电器最大电流，电压和电池温度锁屏上充电时</string>
+   <string name="torch_long_press_power_gesture_title">锁屏手电筒</string>
+   <string name="torch_long_press_power_gesture_desc">当显示屏关闭时，长按电源按钮激活手电筒</string>
 </resources>

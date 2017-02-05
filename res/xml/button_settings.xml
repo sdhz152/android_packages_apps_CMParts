@@ -111,6 +111,12 @@
             android:summary="@string/show_stk_dialog_summary"
             android:defaultValue="false" />
 
+    	<org.cyanogenmod.cmparts.widget.SystemSettingSwitchPreference
+            android:key="lockscreen_battery_info"
+            android:title="@string/lockscreen_battery_info_title"
+            android:summary="@string/lockscreen_battery_info_summary"
+            android:defaultValue="false" />
+
     </PreferenceCategory>
 
     <PreferenceCategory
