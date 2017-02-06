@@ -83,7 +83,7 @@
         android:key="show_su_indicator"
         android:title="@string/show_su_indicator_title"
         android:summary="@string/show_su_indicator_summary"
-        android:defaultValue="true" />
+        android:defaultValue="false" />
 
     <cyanogenmod.preference.CMSystemSettingListPreference
         android:key="qs_quick_pulldown"

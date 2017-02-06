@@ -150,6 +150,12 @@
             android:entryValues="@array/hardware_keys_action_values"
             android:persistent="false" />
 
+    	<org.cyanogenmod.cmparts.widget.SystemSettingSwitchPreference
+            android:key="shake_clean_recent"
+            android:title="@string/shake_clean_recent"
+            android:summary="@string/shake_clean_recent_summary"
+            android:defaultValue="true" />
+
     </PreferenceCategory>
 
     <PreferenceCategory

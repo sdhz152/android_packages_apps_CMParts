@@ -32,4 +32,6 @@
     <string name="show_su_indicator_summary">Option to enable or disable native superuser icon</string>
     <string name="lockscreen_battery_info_title">Lockscreen battery info</string>
     <string name="lockscreen_battery_info_summary">Display negotiated charger max current-voltage and battery temperature on lockscreen while charging</string>
+    <string name="shake_clean_recent">Clean by shake</string>
+    <string name="shake_clean_recent_summary">Clean recent task by shake</string>
 </resources>
