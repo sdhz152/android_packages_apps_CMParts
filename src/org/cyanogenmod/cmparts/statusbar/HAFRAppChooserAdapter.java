@@ -21,7 +21,7 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.android.settings.R;
+import org.cyanogenmod.cmparts.R;
 
 public abstract class HAFRAppChooserAdapter extends BaseAdapter implements Filterable {
 

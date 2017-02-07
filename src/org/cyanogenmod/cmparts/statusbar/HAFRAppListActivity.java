@@ -21,7 +21,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 
-import com.android.settings.R;
+import org.cyanogenmod.cmparts.R;
 
 public class HAFRAppListActivity extends Activity {
 
