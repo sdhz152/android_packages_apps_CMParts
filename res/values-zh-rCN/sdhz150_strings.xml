@@ -63,4 +63,20 @@
   <string name="recents_clear_all_location_bottom_right">右下方</string>
   <string name="recents_clear_all_location_bottom_left">左下方</string>
   <string name="recents_clear_all_location_bottom_center">下方中央</string>
+    <!--Status bar date -->
+    <string name="status_bar_clock_category">时钟</string>
+    <string name="status_bar_date_title">日期</string>
+    <string name="status_bar_date_none">隐藏 (默认)</string>
+    <string name="status_bar_date_small">小</string>
+    <string name="status_bar_date_normal">正常</string>
+    <string name="status_bar_date_format_title">日期格式</string>
+    <string name="status_bar_date_style">日期样式</string>
+    <string name="status_bar_date_style_normal">正常</string>
+    <string name="status_bar_date_style_lowercase">小写</string>
+    <string name="status_bar_date_style_uppercase">大写</string>
+    <string name="status_bar_date_format_custom">自定义java格式</string>
+    <string name="status_bar_date_string_edittext_title">日期格式必须为. MM/dd/yy</string>
+    <string name="status_bar_date_string_edittext_summary">请输入字符串</string>
+    <string name="menu_save">保存</string>
+    <string name="menu_cancel">取消</string>
 </resources>
