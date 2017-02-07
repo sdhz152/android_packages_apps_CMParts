@@ -32,17 +32,6 @@
         android:persistent="false" />
 
     <PreferenceCategory
-        android:key="recents_options"
-        android:title="@string/recents_options" >
-
-    <PreferenceScreen
-        android:key="recents_panel"
-        android:title="@string/recents_options_title"
-        android:fragment="org.sudamod.RecentsSettings" />
-
-    </PreferenceCategory>
-
-    <PreferenceCategory
         android:key="navigation_bar_category"
         android:title="@string/navigation_bar_category" >
 
@@ -166,6 +155,19 @@
             android:title="@string/shake_clean_recent"
             android:summary="@string/shake_clean_recent_summary"
             android:defaultValue="true" />
+
+        <SwitchPreference
+            android:key="show_clear_all_recents"
+            android:title="@string/show_clear_all_recents_button_title"
+            android:summary="@string/show_clear_all_recents_button_summary"
+            android:defaultValue="true" />
+
+        <ListPreference
+            android:key="recents_clear_all_location"
+            android:title="@string/recents_clear_all_location_title"
+            android:entries="@array/recents_clear_all_location_entries"
+            android:entryValues="@array/recents_clear_all_location_values"
+            android:dependency="show_clear_all_recents" />
 
          <PreferenceScreen
              android:key="hide_app_from_recents"

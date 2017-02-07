@@ -27,6 +27,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.RemoteException;
 import android.provider.Settings;
+import android.os.UserHandle;
 import android.support.v14.preference.SwitchPreference;
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
@@ -87,6 +88,9 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
     private static final String CATEGORY_VOLUME = "volume_keys";
     private static final String CATEGORY_BACKLIGHT = "key_backlight";
     private static final String CATEGORY_NAVBAR = "navigation_bar_category";
+
+    private static final String SHOW_CLEAR_ALL_RECENTS = "show_clear_all_recents";
+    private static final String RECENTS_CLEAR_ALL_LOCATION = "recents_clear_all_location";
 
     // Available custom actions to perform on a key press.
     // Must match values for KEY_HOME_LONG_PRESS_ACTION in:
@@ -149,6 +153,9 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
     private SwitchPreference mHomeAnswerCall;
     private SwitchPreference mTorchLongPressPowerGesture;
 
+    private SwitchPreference mRecentsClearAll;
+    private ListPreference mRecentsClearAllLocation;
+
     private PreferenceCategory mNavigationPreferencesCat;
 
     private Handler mHandler;
@@ -205,6 +212,18 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
 
         // Power button ends calls.
         mPowerEndCall = (SwitchPreference) findPreference(KEY_POWER_END_CALL);
+
+        mRecentsClearAll = (SwitchPreference) findPreference(SHOW_CLEAR_ALL_RECENTS);
+        mRecentsClearAll.setChecked(Settings.System.getIntForUser(resolver,
+            Settings.System.SHOW_CLEAR_ALL_RECENTS, 1, UserHandle.USER_CURRENT) == 1);
+        mRecentsClearAll.setOnPreferenceChangeListener(this);
+
+        mRecentsClearAllLocation = (ListPreference) findPreference(RECENTS_CLEAR_ALL_LOCATION);
+        int location = Settings.System.getIntForUser(resolver,
+                Settings.System.RECENTS_CLEAR_ALL_LOCATION, 3, UserHandle.USER_CURRENT);
+        mRecentsClearAllLocation.setValue(String.valueOf(location));
+        mRecentsClearAllLocation.setOnPreferenceChangeListener(this);
+        updateRecentsLocation(location);
 
         // Long press power while display is off to activate torchlight
         mTorchLongPressPowerGesture =
@@ -616,6 +635,17 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
             handleSystemActionListChange(mVolumeKeyCursorControl, newValue,
                     Settings.System.VOLUME_KEY_CURSOR_CONTROL);
             return true;
+        } else if (preference == mRecentsClearAll) {
+            boolean show = (Boolean) newValue;
+            Settings.System.putIntForUser(getActivity().getContentResolver(),
+                    Settings.System.SHOW_CLEAR_ALL_RECENTS, show ? 1 : 0, UserHandle.USER_CURRENT);
+            return true;
+        } else if (preference == mRecentsClearAllLocation) {
+            int location = Integer.valueOf((String) newValue);
+            Settings.System.putIntForUser(getActivity().getContentResolver(),
+                    Settings.System.RECENTS_CLEAR_ALL_LOCATION, location, UserHandle.USER_CURRENT);
+            updateRecentsLocation(location);
+            return true;
         } else if (preference == mNavigationRecentsLongPressAction) {
             // RecentsLongPressAction is handled differently because it intentionally uses
             // Settings.System
@@ -743,5 +773,36 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
                 CMSettings.Secure.RING_HOME_BUTTON_BEHAVIOR, (mHomeAnswerCall.isChecked()
                         ? CMSettings.Secure.RING_HOME_BUTTON_BEHAVIOR_ANSWER
                         : CMSettings.Secure.RING_HOME_BUTTON_BEHAVIOR_DO_NOTHING));
+    }
+
+    private void updateRecentsLocation(int value) {
+        ContentResolver resolver = getContentResolver();
+        Resources res = getResources();
+        int summary = -1;
+
+        Settings.System.putInt(resolver, Settings.System.RECENTS_CLEAR_ALL_LOCATION, value);
+
+        if (value == 0) {
+            Settings.System.putInt(resolver, Settings.System.RECENTS_CLEAR_ALL_LOCATION, 0);
+            summary = R.string.recents_clear_all_location_top_right;
+        } else if (value == 1) {
+            Settings.System.putInt(resolver, Settings.System.RECENTS_CLEAR_ALL_LOCATION, 1);
+            summary = R.string.recents_clear_all_location_top_left;
+        } else if (value == 2) {
+            Settings.System.putInt(resolver, Settings.System.RECENTS_CLEAR_ALL_LOCATION, 2);
+            summary = R.string.recents_clear_all_location_top_center;            
+        } else if (value == 3) {
+            Settings.System.putInt(resolver, Settings.System.RECENTS_CLEAR_ALL_LOCATION, 3);
+            summary = R.string.recents_clear_all_location_bottom_right;
+        } else if (value == 4) {
+            Settings.System.putInt(resolver, Settings.System.RECENTS_CLEAR_ALL_LOCATION, 4);
+            summary = R.string.recents_clear_all_location_bottom_left;
+        } else if (value == 5) {
+            Settings.System.putInt(resolver, Settings.System.RECENTS_CLEAR_ALL_LOCATION, 5);
+            summary = R.string.recents_clear_all_location_bottom_center;            
+        }
+        if (mRecentsClearAllLocation != null && summary != -1) {
+            mRecentsClearAllLocation.setSummary(res.getString(summary));
+        }
     }
 }
