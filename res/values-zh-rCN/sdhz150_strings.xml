@@ -25,8 +25,8 @@
     <string name="status_bar_network_traffic_style_up">显示上传速度</string>
     <string name="status_bar_network_traffic_style_down">显示下载速度</string>
     <string name="status_bar_network_traffic_style_all">显示上传和下载速度</string>
-    <string name="show_stk_dialog_title">隐藏STK对话框</string>
-    <string name="show_stk_dialog_summary">隐藏开机STK对话框</string>
+    <string name="show_stk_dialog_title">开启STK对话框</string>
+    <string name="show_stk_dialog_summary">开启开机STK对话框</string>
     <!-- SU indicator -->
     <string name="show_su_indicator_title">启用SU图标</string>
     <string name="show_su_indicator_summary">选项可启用或禁用本地超级用户图标</string>
