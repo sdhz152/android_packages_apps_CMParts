@@ -27,6 +27,7 @@ import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.PreferenceScreen;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.Preference.OnPreferenceChangeListener;
+import android.support.v7.preference.DropDownPreference;
 import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.widget.EditText;
@@ -41,6 +42,8 @@ import android.view.View;
 import java.util.Date;
 
 import cyanogenmod.preference.CMSystemSettingListPreference;
+import cyanogenmod.preference.CMSecureSettingSwitchPreference;
+import cyanogenmod.providers.CMSettings;
 
 import org.cyanogenmod.cmparts.R;
 import org.cyanogenmod.cmparts.SettingsPreferenceFragment;
@@ -79,6 +82,10 @@ public class StatusBarSettings extends SettingsPreferenceFragment
     private ListPreference mCarrierSize;
     private String mCustomCarrierLabelText;
     private SwitchPreference mStatusBarCarrier;
+
+    private DropDownPreference mNetTrafficMode;
+    private CMSecureSettingSwitchPreference mNetTrafficAutohide;
+    private NetworkTrafficThresholdSeekBarPreference mNetTrafficAutohideThreshold;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -147,7 +154,27 @@ public class StatusBarSettings extends SettingsPreferenceFragment
         mQuickPulldown.setOnPreferenceChangeListener(this);
         updateQuickPulldownSummary(mQuickPulldown.getIntValue(0));
 
+        mNetTrafficMode = (DropDownPreference)
+                findPreference(CMSettings.Secure.NETWORK_TRAFFIC_MODE);
+        mNetTrafficMode.setOnPreferenceChangeListener(this);
+        int mode = CMSettings.Secure.getInt(resolver,
+                CMSettings.Secure.NETWORK_TRAFFIC_MODE, 0);
+        mNetTrafficMode.setValue(String.valueOf(mode));
+
+        mNetTrafficAutohide = (CMSecureSettingSwitchPreference)
+                findPreference(CMSettings.Secure.NETWORK_TRAFFIC_AUTOHIDE);
+        mNetTrafficAutohide.setOnPreferenceChangeListener(this);
+
+        mNetTrafficAutohideThreshold = (NetworkTrafficThresholdSeekBarPreference)
+                findPreference(CMSettings.Secure.NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD);
+        int netTrafficAutohideThreshold = CMSettings.Secure.getInt(resolver,
+                CMSettings.Secure.NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD, 10);
+        mNetTrafficAutohideThreshold.setThreshold(netTrafficAutohideThreshold);
+        mNetTrafficAutohideThreshold.setOnPreferenceChangeListener(this);
+
         parseClockDateFormats();
+
+        updateEnabledStates(null, null);
     }
 
     @Override
@@ -211,6 +238,20 @@ public class StatusBarSettings extends SettingsPreferenceFragment
                     Settings.System.STATUS_BAR_DATE_STYLE, clockDateStyle);
             mStatusBarDateStyle.setSummary(mStatusBarDateStyle.getEntries()[index]);
             parseClockDateFormats();
+            return true;
+        } else if (preference == mNetTrafficMode) {
+            int intState = Integer.valueOf((String) newValue);
+            CMSettings.Secure.putInt(getActivity().getContentResolver(),
+                    CMSettings.Secure.NETWORK_TRAFFIC_MODE, intState);
+            updateEnabledStates(intState, null);
+            return true;
+        } else if (preference == mNetTrafficAutohide) {
+            updateEnabledStates(null, (Boolean) newValue);
+            return true;
+        } else if (preference == mNetTrafficAutohideThreshold) {
+            int threshold = (Integer) newValue;
+            CMSettings.Secure.putInt(getActivity().getContentResolver(),
+                    CMSettings.Secure.NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD, threshold);
             return true;
         } else if (preference == mStatusBarDateFormat) {
             int index = mStatusBarDateFormat.findIndexOfValue((String) newValue);
@@ -358,4 +399,12 @@ public class StatusBarSettings extends SettingsPreferenceFragment
         } 
           return super.onPreferenceTreeClick(preference);
       }
+
+    private void updateEnabledStates(Integer mode, Boolean autoHide) {
+        boolean disabled = mode == null ? "0".equals(mNetTrafficMode.getValue()) : mode == 0;
+        boolean autoHideEnabled = autoHide == null ? mNetTrafficAutohide.isChecked() : autoHide;
+
+        mNetTrafficAutohide.setEnabled(!disabled);
+        mNetTrafficAutohideThreshold.setEnabled(!disabled && autoHideEnabled);
+    }
 }
