@@ -550,4 +550,5 @@
     <string name="network_traffic_autohide">自动隐藏</string>
     <string name="network_traffic_autohide_summary">没有活动时隐藏交通监控器</string>
     <string name="network_traffic_autohide_threshold_title">不活动阈值</string>
+    <string name="network_traffic_autohide_threshold_summary">如果有网络流量监控显示将被隐藏\少于 <xliff:g id="value">%1$s</xliff:g> <xliff:g id="unit" example="kB">%2$s</xliff:g>/s 的网络流量</string>
 </resources>
