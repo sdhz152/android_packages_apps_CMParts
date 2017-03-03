@@ -53,7 +53,6 @@ public class StatusBarSettings extends SettingsPreferenceFragment
     private static final String STATUS_BAR_BATTERY_STYLE = "status_bar_battery_style";
     private static final String STATUS_BAR_SHOW_BATTERY_PERCENT = "status_bar_show_battery_percent";
     private static final String STATUS_BAR_QUICK_QS_PULLDOWN = "qs_quick_pulldown";
-    private static final String STATUS_BAR_NETWORK_TRAFFIC_STYLE = "status_bar_network_traffic_style";
     private static final String CUSTOM_CARRIER_LABEL = "custom_carrier_label";
     private static final String CARRIER_SIZE_STYLE = "carrier_size_style";
     private static final String STATUS_BAR_CARRIER = "status_bar_carrier";
@@ -76,7 +75,6 @@ public class StatusBarSettings extends SettingsPreferenceFragment
     private ListPreference mStatusBarDateStyle;
     private ListPreference mStatusBarDateFormat;
 
-    private ListPreference mStatusBarNetworkTraffic;
     private PreferenceScreen mCustomCarrierLabel;
     private ListPreference mCarrierSize;
     private String mCustomCarrierLabelText;
@@ -149,14 +147,6 @@ public class StatusBarSettings extends SettingsPreferenceFragment
         mQuickPulldown.setOnPreferenceChangeListener(this);
         updateQuickPulldownSummary(mQuickPulldown.getIntValue(0));
 
-        mStatusBarNetworkTraffic = (ListPreference) findPreference(STATUS_BAR_NETWORK_TRAFFIC_STYLE);
-        int networkTrafficStyle = Settings.System.getInt(resolver,
-                Settings.System.STATUS_BAR_NETWORK_TRAFFIC_STYLE, 3);
-        mStatusBarNetworkTraffic.setValue(String.valueOf(networkTrafficStyle));
-        mStatusBarNetworkTraffic
-                .setSummary(mStatusBarNetworkTraffic.getEntry());
-        mStatusBarNetworkTraffic.setOnPreferenceChangeListener(this);
-
         parseClockDateFormats();
     }
 
@@ -181,16 +171,6 @@ public class StatusBarSettings extends SettingsPreferenceFragment
         } else if (preference == mStatusBarBattery) {
             int value = Integer.parseInt((String) newValue);
             enableStatusBarBatteryDependents(value);
-            return true;
-        } else if (preference == mStatusBarNetworkTraffic) {
-            int networkTrafficStyle = Integer.valueOf((String) newValue);
-            int index = mStatusBarNetworkTraffic
-                    .findIndexOfValue((String) newValue);
-            Settings.System.putInt(getContentResolver(),
-                    Settings.System.STATUS_BAR_NETWORK_TRAFFIC_STYLE,
-                    networkTrafficStyle);
-            mStatusBarNetworkTraffic.setSummary(mStatusBarNetworkTraffic
-                    .getEntries()[index]);
             return true;
         } else if (preference == mStatusBarCarrier) {
              boolean value = (Boolean) newValue;
