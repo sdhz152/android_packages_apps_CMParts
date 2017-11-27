@@ -637,6 +637,13 @@
     <string name="touchscreen_gesture_letter_w_title">Draw the letter \"W\"</string>
     <string name="touchscreen_gesture_letter_z_title">Draw the letter \"Z\"</string>
 
+    <!-- Gesture: Stylus gestures -->
+    <string name="touchscreen_gesture_swipe_up_stylus_title">Swipe up with the stylus</string>
+    <string name="touchscreen_gesture_swipe_down_stylus_title">Swipe down with the stylus</string>
+    <string name="touchscreen_gesture_swipe_left_stylus_title">Swipe left with the stylus</string>
+    <string name="touchscreen_gesture_swipe_right_stylus_title">Swipe right with the stylus</string>
+    <string name="touchscreen_gesture_long_press_stylus_title">Long press with the stylus</string>
+
     <string name="touchscreen_gesture_action_dialog_title">Gesture action</string>
     <string name="touchscreen_gesture_action_do_nothing">Do nothing</string>
     <string name="touchscreen_gesture_action_flashlight">Toggle the flashlight</string>
@@ -663,4 +670,6 @@
     <string name="network_traffic_autohide_summary">Hide the traffic monitor when there is no activity</string>
     <string name="network_traffic_autohide_threshold_title">Inactivity threshold</string>
     <string name="network_traffic_autohide_threshold_summary">The traffic display will be hidden if there\'s less than <xliff:g id="value">%1$s</xliff:g> <xliff:g id="unit" example="kB">%2$s</xliff:g>/s of traffic</string>
+    <string name="touchscreen_gesture_action_volume_down">Lower media volume</string>
+    <string name="touchscreen_gesture_action_volume_up">Raise media volume</string>
 </resources>
