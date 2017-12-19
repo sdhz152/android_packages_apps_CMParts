@@ -552,6 +552,11 @@
   <string name="touchscreen_gesture_letter_w_title">绘制字母\"W\"</string>
   <string name="touchscreen_gesture_letter_z_title">绘制字母\"Z\"</string>
   <!-- Gesture: Stylus gestures -->
+  <string name="touchscreen_gesture_swipe_up_stylus_title">用手写笔向上滑动</string>
+  <string name="touchscreen_gesture_swipe_down_stylus_title">用手写笔向下滑动</string>
+  <string name="touchscreen_gesture_swipe_left_stylus_title">用手写笔向左滑动</string>
+  <string name="touchscreen_gesture_swipe_right_stylus_title">用手写笔向右滑动</string>
+  <string name="touchscreen_gesture_long_press_stylus_title">用手写笔进行长按</string>
   <string name="touchscreen_gesture_action_dialog_title">手势操作</string>
   <string name="touchscreen_gesture_action_do_nothing">不进行任何操作</string>
   <string name="touchscreen_gesture_action_flashlight">切换手电筒</string>
@@ -564,18 +569,20 @@
   <string name="touchscreen_gesture_action_previous_track">转到上一曲目</string>
   <string name="touchscreen_gesture_action_next_track">转到下一曲目</string>
 
-    <!-- Status bar - Network Traffic -->
-    <string name="network_traffic_settings_title">网络流量监控</string>
-    <string name="network_traffic_settings_summary">显示状态栏中当前的网络流量</string>
+  <!-- Status bar - Network Traffic -->
+  <string name="network_traffic_settings_title">网络流量监控</string>
+  <string name="network_traffic_settings_summary">显示状态栏中当前的网络流量</string>
+  <string name="network_traffic_mode_title">显示模式</string>
+  <string name="network_traffic_refresh_interval_title">更新间隔</string>
+  <string name="network_traffic_mode_disable">禁用</string>
+  <string name="network_traffic_mode_up">显示上传速度</string>
+  <string name="network_traffic_mode_down">显示下载速度</string>
+  <string name="network_traffic_mode_all">显示上传和下载速度</string>
+  <string name="network_traffic_autohide">自动隐藏</string>
+  <string name="network_traffic_autohide_summary">没有活动时隐藏交通监控器</string>
+  <string name="network_traffic_autohide_threshold_title">不活动阈值</string>
+  <string name="network_traffic_autohide_threshold_summary">如果有网络流量监控显示将被隐藏\少于 <xliff:g id="value">%1$s</xliff:g> <xliff:g id="unit" example="kB">%2$s</xliff:g>/s 的网络流量</string>
+  <string name="touchscreen_gesture_action_volume_down">降低媒体音量</string>
+  <string name="touchscreen_gesture_action_volume_up">提高媒体音量</string>
 
-    <string name="network_traffic_mode_title">显示模式</string>
-    <string name="network_traffic_refresh_interval_title">更新间隔</string>
-    <string name="network_traffic_mode_disable">禁用</string>
-    <string name="network_traffic_mode_up">显示上传速度</string>
-    <string name="network_traffic_mode_down">显示下载速度</string>
-    <string name="network_traffic_mode_all">显示上传和下载速度</string>
-    <string name="network_traffic_autohide">自动隐藏</string>
-    <string name="network_traffic_autohide_summary">没有活动时隐藏交通监控器</string>
-    <string name="network_traffic_autohide_threshold_title">不活动阈值</string>
-    <string name="network_traffic_autohide_threshold_summary">如果有网络流量监控显示将被隐藏\少于 <xliff:g id="value">%1$s</xliff:g> <xliff:g id="unit" example="kB">%2$s</xliff:g>/s 的网络流量</string>
 </resources>
